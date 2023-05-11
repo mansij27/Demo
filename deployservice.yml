@@ -13,7 +13,7 @@ spec:
         app: demo-deploy
     spec:
       containers:
-        - name: final-deploy-container
+        - name: new-deploy-container
           image: mjmansi27/my-docker:23
           ports:
             - containerPort: 8000
