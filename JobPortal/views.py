@@ -37,7 +37,7 @@ def loginUser(request):
             return redirect('home')
        return render(request,'login.html')
 
-def registerUser(request):
+def registerUser(request): 
     if request.user.is_authenticated:
         return redirect('home')
     else:
