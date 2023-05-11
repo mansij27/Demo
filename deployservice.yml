@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-deployment
+spec:
+  selector:
+    matchLabels:
+      app: demo-deploy
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: demo-deploy
+    spec:
+      containers:
+        - name: new-deploy-container
+          image: mjmansi27/my-docker:23
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+spec:
+  selector:
+    app: demo-deploy
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 32000
+  type: NodePort
