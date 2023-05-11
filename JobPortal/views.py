@@ -16,7 +16,7 @@ def home(request):
         companies=Company.objects.all()
         context={
             'companies':companies,
-        }
+        } 
         return render(request,'Jobseeker.html',context)
 
 def logoutUser(request):
