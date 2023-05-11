@@ -23,6 +23,17 @@ pipeline{
             sh 'docker push mjmansi27/my-docker:${BUILD_NUMBER}'
             }
         }
+        stage('Deploy to k8s'){
+            steps{
+                script{
+                     withCredentials([file(credentialsId: 'k8s-cf-new', variable: 'k8spwd')]) {         
+                        sh 'kubectl --kubeconfig=$k8spwd apply -f deployservice.yml'
+                        sh 'kubectl --kubeconfig=$k8spwd set image deployment/new-deployment new-deploy-container=mjmansi27/my-docker:${BUILD_NUMBER}'
+                        echo 'Deploy completed...'
+                    }
+                }
+            }
+        }
     }
     
     post{
