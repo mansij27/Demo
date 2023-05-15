@@ -28,7 +28,7 @@ pipeline{
                 script{
                      kubeconfig(credentialsId: 'dd0be6cc-e44a-4f8e-a93a-c2b09f4fb10d', serverUrl: '') {
                         sh 'kubectl apply -f deployservice.yml'
-                        sh 'kubectl set image deployment/final-capstone-deploy final-deploy-container=mjmansi27/my-docker:${BUILD_NUMBER}'
+                        sh 'kubectl set image deployment/demo-deploy fnew-deploy-container=mjmansi27/my-docker:${BUILD_NUMBER}'
                         echo 'Deploy completed...' 
                     }
                 }
